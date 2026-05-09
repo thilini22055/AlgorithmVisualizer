@@ -31,10 +31,10 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnGenarate = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.lblComparisons = new System.Windows.Forms.Label();
-            this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
+            this.panelDraw = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnStart
@@ -76,15 +76,6 @@
             this.btnGenarate.UseVisualStyleBackColor = false;
             this.btnGenarate.Click += new System.EventHandler(this.btnGenarate_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 232);
-            this.panel1.TabIndex = 3;
-            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Silver;
@@ -107,16 +98,28 @@
             this.lblComparisons.TabIndex = 5;
             this.lblComparisons.Text = "Comparisons: 0";
             // 
-            // cmbAlgorithm
+            // panelDraw
             // 
-            this.cmbAlgorithm.FormattingEnabled = true;
-            this.cmbAlgorithm.Items.AddRange(new object[] {
+            this.panelDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDraw.Location = new System.Drawing.Point(12, 27);
+            this.panelDraw.Name = "panelDraw";
+            this.panelDraw.Size = new System.Drawing.Size(776, 233);
+            this.panelDraw.TabIndex = 7;
+            this.panelDraw.Click += new System.EventHandler(this.panelDraw_Click);
+            this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
             "Insertion Sort",
             "Quick Sort"});
-            this.cmbAlgorithm.Location = new System.Drawing.Point(42, 359);
-            this.cmbAlgorithm.Name = "cmbAlgorithm";
-            this.cmbAlgorithm.Size = new System.Drawing.Size(121, 24);
-            this.cmbAlgorithm.TabIndex = 6;
+            this.comboBox1.Location = new System.Drawing.Point(42, 353);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // SortingForm
             // 
@@ -124,16 +127,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cmbAlgorithm);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.panelDraw);
             this.Controls.Add(this.lblComparisons);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnGenarate);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnStart);
             this.Name = "SortingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sorting Form";
+            this.Load += new System.EventHandler(this.SortingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,9 +148,9 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnGenarate;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label lblComparisons;
-        private System.Windows.Forms.ComboBox cmbAlgorithm;
+        private System.Windows.Forms.Panel panelDraw;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
