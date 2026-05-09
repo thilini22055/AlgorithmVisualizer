@@ -48,6 +48,7 @@
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "▶ Start";
             this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnReset
             // 
@@ -60,6 +61,7 @@
             this.btnReset.TabIndex = 1;
             this.btnReset.Text = "🔄 Reset";
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnGenarate
             // 
@@ -72,6 +74,7 @@
             this.btnGenarate.TabIndex = 2;
             this.btnGenarate.Text = "➕ Genarate";
             this.btnGenarate.UseVisualStyleBackColor = false;
+            this.btnGenarate.Click += new System.EventHandler(this.btnGenarate_Click);
             // 
             // panel1
             // 
@@ -92,6 +95,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "⚙ Settings";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // lblComparisons
             // 
@@ -99,9 +103,9 @@
             this.lblComparisons.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComparisons.Location = new System.Drawing.Point(233, 359);
             this.lblComparisons.Name = "lblComparisons";
-            this.lblComparisons.Size = new System.Drawing.Size(109, 18);
+            this.lblComparisons.Size = new System.Drawing.Size(128, 18);
             this.lblComparisons.TabIndex = 5;
-            this.lblComparisons.Text = "Comparisons";
+            this.lblComparisons.Text = "Comparisons: 0";
             // 
             // cmbAlgorithm
             // 
