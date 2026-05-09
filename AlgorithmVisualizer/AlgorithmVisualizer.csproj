@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C1117F72-F431-4483-859E-2E05AB02EEBD}</ProjectGuid>
+    <ProjectGuid>{3A5AA2CC-894F-0DA8-00CF-B25AF29F03A3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>AlgorithmVisualizer</RootNamespace>
     <AssemblyName>AlgorithmVisualizer</AssemblyName>
