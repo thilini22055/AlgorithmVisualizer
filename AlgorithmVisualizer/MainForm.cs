@@ -21,5 +21,17 @@ namespace AlgorithmVisualizer
         {
 
         }
+
+        private void btnSorting_Click(object sender, EventArgs e)
+        {
+            SortingForm f = new SortingForm();
+            f.Show();
+        }
+
+        private void btnPathfinding_Click(object sender, EventArgs e)
+        {
+            PathfindingForm f = new PathfindingForm();
+            f.Show();
+        }
     }
 }

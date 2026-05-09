@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AlgorithmVisualizer
 {
-    public partial class Pathfinding : Form
+    public partial class PathfindingForm : Form
     {
-        public Pathfinding()
+        public PathfindingForm()
         {
             InitializeComponent();
         }
