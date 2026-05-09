@@ -17,6 +17,10 @@ namespace AlgorithmVisualizer
         QuickSort quickSorter;
         int[] array;
         Random rand = new Random();
+        int sortingSize = 50;
+        int sortingSpeed = 50;
+        int pathSize = 50;
+        int pathSpeed = 50;
 
 
         public SortingForm()
@@ -24,6 +28,8 @@ namespace AlgorithmVisualizer
             InitializeComponent();
 
             comboBox1.SelectedIndex = 0;
+
+            sortingSpeed = 50;   // ✅ ADD THIS (important)
 
             timer.Interval = 50;
             timer.Tick += Timer_Tick;
@@ -79,8 +85,7 @@ namespace AlgorithmVisualizer
             panelDraw.Invalidate();
 
         }
-
-        private void btnGenarate_Click(object sender, EventArgs e)
+        private void GenerateArray()
         {
             timer.Stop();
 
@@ -89,34 +94,55 @@ namespace AlgorithmVisualizer
 
             lblComparisons.Text = "Comparisons: 0";
 
-            array = new int[50];
+            array = new int[sortingSize]; // ✅ always updated size
 
-            GenerateArray();
+            int maxHeight = panelDraw.Height - 10;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = rand.Next(10, maxHeight);
+            }
 
             panelDraw.Invalidate();
+        }
 
+        private void btnGenarate_Click(object sender, EventArgs e)
+        {
+                 GenerateArray();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
 
+
+            Setting settings = new Setting(
+                sortingSize,
+                sortingSpeed,
+                 0,
+                  0
+            );
+
+            if (settings.ShowDialog() == DialogResult.OK)
+            {
+
+                sortingSize = settings.SortingSize;
+
+                sortingSpeed = 501 - settings.SortingSpeed;
+
+                timer.Interval = Math.Max(1, sortingSpeed);
+
+                GenerateArray();
+            }
         }
+
+
+        
 
         private void SortingForm_Load(object sender, EventArgs e)
         {
             
         }
-        private void GenerateArray()
-        {
-            array = new int[50];
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                array[i] = rand.Next(10, panelDraw.Height);
-            }
-
-            panelDraw.Invalidate();
-        }
+        
 
        
 
@@ -130,10 +156,8 @@ namespace AlgorithmVisualizer
             if (array == null || array.Length == 0)
                 return;
 
-            Graphics g = e.Graphics;
-            if (array == null) return;
-
-            int width = panelDraw.Width / array.Length;
+            int spacing = 1;
+            int width = Math.Max(1, panelDraw.Width / array.Length);
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -188,11 +212,12 @@ namespace AlgorithmVisualizer
 
                 }
 
-                int height = array[i];
+                int height = Math.Min(array[i], panelDraw.Height - 5);
+                int x = i * width + spacing;
 
                 e.Graphics.FillRectangle(
                     brush,
-                    i * width,
+                    x,
                     panelDraw.Height - height,
                     width - 2,
                     height
