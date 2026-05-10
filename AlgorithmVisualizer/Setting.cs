@@ -13,8 +13,9 @@ namespace AlgorithmVisualizer
     public partial class Setting : Form
     {
         public int SortingSize;
-        private int sortingSpeed;
         public int SortingSpeed;
+        public int PathSize;
+        public int PathSpeed;
 
         public Setting(
             int currentSortingSize,
@@ -32,6 +33,14 @@ namespace AlgorithmVisualizer
             trackSortingSpeed.Maximum = 500;
             trackSortingSpeed.Value = 250;
 
+            numPathSize.Minimum = 10;
+            numPathSize.Maximum = 50;
+            numPathSize.Value = currentPathSize;
+
+            trackPathSpeed.Minimum = 1;
+            trackPathSpeed.Maximum = 200;
+            trackPathSpeed.Value = currentPathSpeed;
+
 
         }
 
@@ -43,14 +52,20 @@ namespace AlgorithmVisualizer
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
+            PathSize = (int)numPathSize.Value;
+            PathSpeed = trackPathSpeed.Value;
+
+            MessageBox.Show("Pathfinding settings saved!");
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SortingSize = (int)numSortingSize.Value;
             SortingSpeed = Math.Max(1, trackSortingSpeed.Value);
-
+            MessageBox.Show("Sorting settings saved!");
             DialogResult = DialogResult.OK;
             Close();
         }
