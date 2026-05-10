@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace AlgorithmVisualizer
 {
     public partial class PathfindingForm : Form
     {
+
         Node[,] grid;
 
         Node startNode = null;
@@ -34,7 +36,6 @@ namespace AlgorithmVisualizer
         public PathfindingForm()
         {
             InitializeComponent();
-            InitializeComponent();
 
             CreateGrid();
 
@@ -42,24 +43,10 @@ namespace AlgorithmVisualizer
 
             timer.Tick += Timer_Tick;
 
-        }
-        private void CreateGrid()
-        {
-            grid = new Node[rows, cols];
 
-            for (int r = 0; r < rows; r++)
-            {
-                for (int c = 0; c < cols; c++)
-                {
-                    grid[r, c] = new Node(r, c);
-                }
-            }
-
-            panelGrid.Invalidate();
         }
 
-
-        private void panelGrid_paint(object sender, PaintEventArgs e)
+        private void panelGrid_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
 
@@ -102,6 +89,21 @@ namespace AlgorithmVisualizer
             }
 
         }
+        private void CreateGrid()
+        {
+            grid = new Node[rows, cols];
+
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < cols; c++)
+                {
+                    grid[r, c] = new Node(r, c);
+                }
+            }
+
+            panelGrid.Invalidate();
+        }
+
 
         private void panelGrid_MouseClick(object sender, MouseEventArgs e)
         {
@@ -135,24 +137,129 @@ namespace AlgorithmVisualizer
 
         }
 
-        private void panelGrid_Paint_1(object sender, PaintEventArgs e)
+        private void btnStartNode_Click(object sender, EventArgs e)
         {
+            currentTool = "Start";
+        }
+
+        private void btnWellNode_Click(object sender, EventArgs e)
+        {
+            currentTool = "Wall";
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            // check start and end
+            if (startNode == null || endNode == null)
+            {
+                MessageBox.Show("Place Start and End nodes.");
+                return;
+            }
+
+            // clear old visited/path
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < cols; c++)
+                {
+                    grid[r, c].Visited = false;
+                    grid[r, c].IsPath = false;
+                    grid[r, c].Parent = null;
+                }
+            }
+
+            bfsQueue.Clear();
+
+            startNode.Visited = true;
+
+            bfsQueue.Enqueue(startNode);
+
+            timer.Start();
 
         }
 
-        private void PathfindingForm_Load(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
+            CreateGrid();
+
+            startNode = null;
+            endNode = null;
+
+            panelGrid.Invalidate();
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnEndNode_Click(object sender, EventArgs e)
         {
-
+            currentTool = "End";
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
 
         }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            if (bfsQueue.Count == 0)
+            {
+                timer.Stop();
+                return;
+            }
+
+            Node current = bfsQueue.Dequeue();
+
+            // FOUND END
+            if (current == endNode)
+            {
+                timer.Stop();
+
+                Node path = endNode;
+
+                while (path != null)
+                {
+                    if (path != startNode && path != endNode)
+                    {
+                        path.IsPath = true;
+                    }
+
+                    path = path.Parent;
+                }
+
+                panelGrid.Invalidate();
+
+                return;
+            }
+
+            int[,] directions =
+            {
+        { -1, 0 },
+        { 1, 0 },
+        { 0, -1 },
+        { 0, 1 }
+    };
+
+            for (int i = 0; i < 4; i++)
+            {
+                int newRow = current.Row + directions[i, 0];
+                int newCol = current.Col + directions[i, 1];
+
+                if (newRow >= 0 && newRow < rows &&
+                    newCol >= 0 && newCol < cols)
+                {
+                    Node neighbor = grid[newRow, newCol];
+
+                    if (!neighbor.Visited && !neighbor.IsWall)
+                    {
+                        neighbor.Visited = true;
+
+                        neighbor.Parent = current;
+
+                        bfsQueue.Enqueue(neighbor);
+                    }
+                }
+            }
+
+            panelGrid.Invalidate();
+        }
+        }
     }
-}
