@@ -1,20 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AlgorithmVisualizer
 {
+    public enum SettingContext
+    {
+        Sorting,
+        Pathfinding
+    }
+
     public partial class Setting : Form
     {
-        public Setting()
+        private readonly SettingContext _context;
+
+        public int SortingSize { get; set; }
+        public int SortingSpeed { get; set; }
+        public int PathSize { get; set; }
+        public int PathSpeed { get; set; }
+
+        public Setting(
+            SettingContext context,
+            int sortingSize,
+            int sortingSpeed,
+            int pathSize,
+            int pathSpeed)
         {
             InitializeComponent();
+            _context = context;
+
+            SortingSize = sortingSize;
+            SortingSpeed = sortingSpeed;
+            PathSize = pathSize;
+            PathSpeed = pathSpeed;
+
+            if (context == SettingContext.Sorting)
+            {
+                Text = "Sorting — Settings";
+                label3.Text = "Array size:";
+            }
+            else
+            {
+                Text = "Pathfinding — Settings";
+                label3.Text = "Grid size:";
+            }
+
+            int sizeShown = context == SettingContext.Sorting ? sortingSize : pathSize;
+            // speedShown is timer interval (ms): higher = slower. Slider is Slow (left) → Fast (right).
+            int intervalMs = context == SettingContext.Sorting ? sortingSpeed : pathSpeed;
+
+            decimal cmbMax = cmb.Maximum;
+            decimal cmbMin = cmb.Minimum;
+            cmb.Value = Math.Max(cmbMin, Math.Min(cmbMax, sizeShown));
+
+            int clampedInterval = Math.Max(
+                trackBar1.Minimum,
+                Math.Min(trackBar1.Maximum, intervalMs));
+            trackBar1.Value = trackBar1.Maximum + trackBar1.Minimum - clampedInterval;
+        }
+
+        private void cmb_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
+            int size = (int)cmb.Value;
+            int intervalMs = trackBar1.Maximum + trackBar1.Minimum - trackBar1.Value;
+
+            if (_context == SettingContext.Sorting)
+            {
+                SortingSize = size;
+                SortingSpeed = intervalMs;
+            }
+            else
+            {
+                PathSize = size;
+                PathSpeed = intervalMs;
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void Setting_Load(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -46,34 +46,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InsertionSort.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pathfinding.cs">
+    <Compile Include="Node.cs" />
+    <Compile Include="PathfindingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pathfinding.Designer.cs">
-      <DependentUpon>Pathfinding.cs</DependentUpon>
+    <Compile Include="PathfindingForm.Designer.cs">
+      <DependentUpon>PathfindingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickSort.cs" />
     <Compile Include="Setting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Setting.Designer.cs">
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sorting.cs">
+    <Compile Include="SortingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sorting.Designer.cs">
-      <DependentUpon>Sorting.cs</DependentUpon>
+    <Compile Include="SortingForm.Designer.cs">
+      <DependentUpon>SortingForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathfindingForm.resx">
+      <DependentUpon>PathfindingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,6 +90,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SortingForm.resx">
+      <DependentUpon>SortingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
