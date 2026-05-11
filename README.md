@@ -1,110 +1,114 @@
-# Algorithm Visualizer
+Algorithm Visualizer
 
-A desktop application developed using **C# Windows Forms (.NET)** for visualizing sorting and pathfinding algorithms with step-by-step animations.
+A desktop-based Visual Programming application developed using C# and Windows Forms (.NET Framework).
+This project visualizes sorting and pathfinding algorithms through interactive graphical interfaces and animations.
 
-## Features
+--------------------------------------------------
 
-### Sorting Visualizer
+Features
 
-Implemented sorting algorithms:
+Sorting Visualizer
 
-* Insertion Sort
-* Quick Sort
+• Quick Sort visualization  
+• Insertion Sort visualization  
+• Adjustable array size  
+• Adjustable animation speed  
+• Step-by-step animated sorting process  
+• Live comparison counter  
 
-Features:
+Pathfinding Visualizer
 
-* Animated sorting visualization using bar charts
-* Real-time comparison counter
-* Random array generation
-* Adjustable array size and animation speed
-* Start and Reset controls
-* Different colors for comparing, swapping, and sorted bars
+• Breadth-First Search (BFS) visualization  
+• Interactive grid system  
+• Start and End node placement  
+• Wall drawing and removal  
+• Step-by-step node exploration animation  
+• Shortest path highlighting  
 
-### Pathfinding Visualizer
+Settings
 
-Implemented pathfinding algorithm:
+• Configurable animation speed  
+• Adjustable grid size (pathfinding)  
+• Real-time settings updates applied to visualizers  
 
-* Breadth-First Search (BFS)
+--------------------------------------------------
 
-Features:
+Technologies Used
 
-* Interactive grid system
-* Place Start and End nodes
-* Draw wall/obstacle tiles
-* Step-by-step BFS traversal animation
-* Final shortest path highlighting
-* Adjustable grid size and animation speed
-* Clear grid and Start controls
-* Validation for missing start/end nodes
+• C#  
+• Windows Forms (.NET Framework)  
+• GDI+ Graphics (System.Drawing)  
+• System.Windows.Forms.Timer  
+• Visual Studio  
 
-## Project Structure
+--------------------------------------------------
+
+Project Structure
 
 AlgorithmVisualizer
+
 │
-├── AlgorithmVisualizer
-│   │
-│   ├── Properties
-│   │
-│   ├── AlgorithmVisualizer.csproj
-│   ├── App.config
-│   ├── Program.cs
-│   │
-│   ├── MainForm.cs
-│   ├── MainForm.Designer.cs
-│   ├── MainForm.resx
-│   │
-│   ├── SortingForm.cs
-│   ├── SortingForm.Designer.cs
-│   ├── SortingForm.resx
-│   │
-│   ├── PathfindingForm.cs
-│   ├── PathfindingForm.Designer.cs
-│   ├── PathfindingForm.resx
-│   │
-│   ├── Setting.cs
-│   ├── Setting.Designer.cs
-│   ├── Setting.resx
-│   │
-│   ├── InsertionSort.cs
-│   ├── QuickSort.cs
-│   ├── Node.cs
-│   │
-│   ├── .gitignore
-│   └── .gitattributes
+├── AlgorithmVisualizer.csproj  
+├── App.config  
+├── Program.cs  
 │
-└── AlgorithmVisualizer.sln
-```
+├── MainForm.cs  
+├── MainForm.Designer.cs  
+├── MainForm.resx  
+│
+├── SortingForm.cs  
+├── SortingForm.Designer.cs  
+├── SortingForm.resx  
+│
+├── PathfindingForm.cs  
+├── PathfindingForm.Designer.cs  
+├── PathfindingForm.resx  
+│
+├── Setting.cs  
+├── Setting.Designer.cs  
+├── Setting.resx  
+│
+├── InsertionSort.cs  
+├── QuickSort.cs  
+├── Node.cs  
+│
+├── Properties  
+├── .gitignore  
+└── .gitattributes  
 
+--------------------------------------------------
 
-## Technologies Used
+How to Run the Project
 
-* C#
-* Windows Forms (.NET)
-* GDI+ Graphics (`System.Drawing`)
-* `System.Windows.Forms.Timer`
+1. Download or clone the repository  
+2. Open the solution file (AlgorithmVisualizer.sln) in Visual Studio  
+3. Build the solution  
+4. Run the project using:
+   • Start button in Visual Studio  
+   OR  
+   • Press F5  
 
-## How to Run
+--------------------------------------------------
 
-1. Open the project in Visual Studio
-2. Open `AlgorithmVisualizer.sln`
-3. Build the solution
-4. Run the application using:
+GitHub Workflow
 
-   * `Ctrl + F5`
-   * or click **Start**
+• Feature-based development was used for implementation  
+• Sorting and Pathfinding modules were developed separately  
+• Settings system was integrated into both visualizers  
+• Regular commits were made with meaningful messages  
+• Final project is maintained in a stable main branch  
 
-## Implemented Requirements
+--------------------------------------------------
 
-* Multi-form WinForms application
-* Timer-based animations
-* Object-Oriented Programming structure
-* Custom algorithm implementations
-* Interactive UI controls
-* Input validation and error handling
+Assignment Information
 
-## Author
+Course: CSCI 22042 – Visual Programming  
+University: University of Kelaniya  
+Type: Individual Assignment  
 
-* Student Name: H.G.T.Yashoda
-* Registration Number:CS/2022/055
-* Course: CSCI 22042 – Visual Programming
-* University of Kelaniya
+--------------------------------------------------
+
+Author
+
+Name: H.G.T.Yashoda  
+Registration Number: CS/2022/055
