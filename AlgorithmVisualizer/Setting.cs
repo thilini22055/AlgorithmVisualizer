@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AlgorithmVisualizer
@@ -12,6 +13,7 @@ namespace AlgorithmVisualizer
     public partial class Setting : Form
     {
         private readonly SettingContext _context;
+        private MainForm _main;
 
         public int SortingSize { get; set; }
         public int SortingSpeed { get; set; }
@@ -56,6 +58,9 @@ namespace AlgorithmVisualizer
                 trackBar1.Minimum,
                 Math.Min(trackBar1.Maximum, intervalMs));
             trackBar1.Value = trackBar1.Maximum + trackBar1.Minimum - clampedInterval;
+
+            Shown += (_, __) => AttachAndSyncToMainForm();
+            FormClosed += (_, __) => DetachFromMainForm();
         }
 
         private void cmb_ValueChanged(object sender, EventArgs e)
@@ -88,6 +93,54 @@ namespace AlgorithmVisualizer
 
         private void Setting_Load(object sender, EventArgs e)
         {
+        }
+
+        private void AttachAndSyncToMainForm()
+        {
+            _main = Application.OpenForms.OfType<MainForm>().FirstOrDefault();
+            if (_main == null || ReferenceEquals(_main, this)) return;
+
+            // Keep the settings dialog exactly aligned with the main window.
+            _main.SizeChanged += MainOnChanged;
+            _main.LocationChanged += MainOnChanged;
+            _main.FormClosed += MainOnClosed;
+
+            SyncFromMain();
+        }
+
+        private void DetachFromMainForm()
+        {
+            if (_main == null) return;
+            _main.SizeChanged -= MainOnChanged;
+            _main.LocationChanged -= MainOnChanged;
+            _main.FormClosed -= MainOnClosed;
+            _main = null;
+        }
+
+        private void MainOnClosed(object sender, FormClosedEventArgs e)
+        {
+            _main = null;
+        }
+
+        private void MainOnChanged(object sender, EventArgs e)
+        {
+            if (IsDisposed || Disposing) return;
+            SyncFromMain();
+        }
+
+        private void SyncFromMain()
+        {
+            if (_main == null) return;
+
+            StartPosition = FormStartPosition.Manual;
+            Location = _main.Location;
+
+            // Match fullscreen/maximize behavior first, then size.
+            WindowState = _main.WindowState;
+            if (WindowState == FormWindowState.Normal)
+            {
+                Size = _main.Size;
+            }
         }
     }
 }
