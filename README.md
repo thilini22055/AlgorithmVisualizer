@@ -41,36 +41,40 @@ Features:
 
 AlgorithmVisualizer
 │
-├── Properties
+├── AlgorithmVisualizer
+│   │
+│   ├── Properties
+│   │
+│   ├── AlgorithmVisualizer.csproj
+│   ├── App.config
+│   ├── Program.cs
+│   │
+│   ├── MainForm.cs
+│   ├── MainForm.Designer.cs
+│   ├── MainForm.resx
+│   │
+│   ├── SortingForm.cs
+│   ├── SortingForm.Designer.cs
+│   ├── SortingForm.resx
+│   │
+│   ├── PathfindingForm.cs
+│   ├── PathfindingForm.Designer.cs
+│   ├── PathfindingForm.resx
+│   │
+│   ├── Setting.cs
+│   ├── Setting.Designer.cs
+│   ├── Setting.resx
+│   │
+│   ├── InsertionSort.cs
+│   ├── QuickSort.cs
+│   ├── Node.cs
+│   │
+│   ├── .gitignore
+│   └── .gitattributes
 │
-├── AlgorithmVisualizer.csproj
-├── App.config
-├── Program.cs
-│
-├── MainForm.cs
-├── MainForm.Designer.cs
-├── MainForm.resx
-│
-├── SortingForm.cs
-├── SortingForm.Designer.cs
-├── SortingForm.resx
-│
-├── PathfindingForm.cs
-├── PathfindingForm.Designer.cs
-├── PathfindingForm.resx
-│
-├── Setting.cs
-├── Setting.Designer.cs
-├── Setting.resx
-│
-├── InsertionSort.cs
-├── QuickSort.cs
-├── Node.cs
-│
-├── .gitignore
-├── .gitattributes
 └── AlgorithmVisualizer.sln
 ```
+
 
 ## Technologies Used
 
